@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using MVCBasketball.Data;
 
 namespace MVCBasketball
 {
@@ -24,6 +26,9 @@ namespace MVCBasketball
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<MVCBasketballContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("MVCBasketballContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,7 +55,7 @@ namespace MVCBasketball
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Raptors}/{action=Index}/{id?}");
             });
         }
     }
