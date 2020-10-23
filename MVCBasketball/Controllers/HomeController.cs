@@ -20,6 +20,18 @@ namespace MVCBasketball.Controllers
 
         public IActionResult Index()
         {
+
+            //return Content("This is the default action");
+            return View();
+        }
+
+        public IActionResult Wellcome( string playerName, int age = 24)
+        {
+
+            //return Content("Wellcome to the raptors stie! " + playerName + " is " + age.ToString()+ " years old.");
+            ViewData["Message"] = $"Hello {playerName}";
+            ViewData["Age"] = age;
+
             return View();
         }
 
